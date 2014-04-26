@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+import hmac
+from hashlib import sha1
+from sys import argv
+from time import time
+
+if len(argv) != 5:
+    print 'Syntax: <method> <url> <seconds> <key>'
+    print 'Example: GET /info 60 my_admin_secret_key'
+else:
+    method, path, seconds, key = argv[1:]
+    method = method.upper()
+    seconds = int(seconds)
+    expires = int(time() + seconds)
+    hmac_body = '%s\n%s\n%s' % (method, expires, path)
+    sig = hmac.new(key, hmac_body, sha1).hexdigest()
+    print 'method: {0}'.format(method)
+    print 'seconds: {0}'.format(str(seconds))
+    print 'expires: {0}'.format(str(expires))
+    print 'hmac_body: {0}'.format(hmac_body)
+    print 'sig: {0}'.format(sig)
+    print '%s?temp_url_sig=%s&temp_url_expires=%s' % \
+        (path, sig, expires)
