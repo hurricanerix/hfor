@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/rhawkins/workspace/gotbattles/gotbattles/games/tictactoe/resources'
+let g:netrw_dirhist_2='/Users/rhawkins/workspace/gotbattles/gotbattles/games/tictactoe'
+let g:netrw_dirhist_3='/Users/rhawkins/workspace/gotbattles/gotbattles/blueprints/simple_auth'
+let g:netrw_dirhist_4='/Users/rhawkins/workspace/gotbattles/gotbattles/games/tictactoe'
+let g:netrw_dirhist_5='/Users/rhawkins/workspace/gotbattles/gotbattles/blueprints/simple_auth/resources/data/dev'
+let g:netrw_dirhist_6='/Users/rhawkins/workspace/gotbattles/gotbattles/games/checkers'
+let g:netrw_dirhist_7='/Users/rhawkins/workspace/gotbattles/gotbattles/games/tictactoe'
