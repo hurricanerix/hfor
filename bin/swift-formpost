@@ -82,6 +82,7 @@ def formpost(url, path, redirect, max_file_size, max_file_count, expires,
 
     resp = requests.post(url, headers=post_headers, data=''.join(data),
                          verify=False, allow_redirects=False)
+    info_print('Status Code: {0}'.format(resp.status_code))
     info_print('Trans ID: {0}'.format(resp.headers.get('X-Trans-Id')))
     if resp.status_code == 201:
         print("Created")
