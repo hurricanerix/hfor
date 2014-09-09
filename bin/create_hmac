@@ -5,7 +5,7 @@ from sys import argv
 from time import time
 
 if len(argv) != 5:
-    print 'Syntax: <method> <url> <seconds> <key>'
+    print 'Syntax: <method> <path> <seconds> <key>'
     print 'Example: GET /info 60 my_admin_secret_key'
 else:
     method, path, seconds, key = argv[1:]
