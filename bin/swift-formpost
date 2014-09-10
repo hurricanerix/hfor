@@ -34,9 +34,10 @@ def formpost(url, path, redirect, max_file_size, max_file_count, expires,
     info_print('Boundry: {0}'.format(boundry))
     form = []
 
-    form.append({
-        'headers': {'Content-Disposition': 'form-data; name="redirect"'},
-        'data': redirect})
+    if redirect != '':
+        form.append({
+            'headers': {'Content-Disposition': 'form-data; name="redirect"'},
+            'data': redirect})
     form.append({
         'headers': {'Content-Disposition': 'form-data; name="max_file_size"'},
         'data': str(max_file_size)})
