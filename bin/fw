@@ -1,0 +1,42 @@
+#!/bin/bash
+
+SSH_PORT=`/bin/grep -i --perl-regex "^\s*port" /etc/ssh/sshd_config | /bin/grep --only-matching --perl-regex "[0-9]+"`
+if [ -z $SSH_PORT ]; then
+	SSH_PORT="22"
+fi
+
+sudo iptables -F
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A INPUT -i eth0 -p tcp --dport $SSH_PORT -j ACCEPT
+# Allow other ports
+for var in "$@"
+do
+	sudo iptables -A INPUT -i eth0 -p tcp --dport $var -j ACCEPT
+done
+sudo iptables -A INPUT -i eth0 -j DROP
+sudo iptables -A INPUT -i eth1 -j DROP
+sudo sh -c 'iptables-save > /etc/network/iptables.rules'
+sudo iptables -L
+echo ""
+echo "!!!!!! IMPORTANT !!!!!!"
+echo "Ensure /etc/network/interfaces contains the following under iface etho0:"
+echo "    pre-up iptables-restore < /etc/network/iptables.rules"
+echo "!!!!!! IMPORTANT !!!!!!"
+
+sudo ip6tables -F
+sudo ip6tables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo ip6tables -A INPUT -i eth0 -p tcp --dport $SSH_PORT -j ACCEPT
+# Allow ports
+for var in "$@"
+do
+	sudo iptables -A INPUT -i eth0 -p tcp --dport $var -j ACCEPT
+done
+sudo ip6tables -A INPUT -i eth0 -j DROP
+sudo ip6tables -A INPUT -i eth1 -j DROP
+sudo sh -c 'ip6tables-save > /etc/network/ip6tables.rules'
+sudo iptables -L
+echo ""
+echo "!!!!!! IMPORTANT !!!!!!"
+echo "Ensure /etc/network/interfaces contains the following under iface etho0:"
+echo "    pre-up ip6tables-restore < /etc/network/ip6tables.rules"
+echo "!!!!!! IMPORTANT !!!!!!"
