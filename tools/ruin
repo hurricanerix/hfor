@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+DEV=$1
+if [ -n "$DEV" ]; then
+	DEV="--dev"
+fi
+
+OS=`uname -a`
+
+# OS specific things
+if [[ "$OS" == *"Darwin"* ]]; then
+	OS='macOS'
+elif [[ "$OS" == *"Ubuntu"* ]]; then
+	OS='Ubuntu'
+	sudo apt-get -y install git zsh vim curl wget python
+	sudo update-alternatives --set editor `which vim.basic`
+else
+	echo "Unsupported OS: $OS"
+	exit 1
+fi
+
+if [ -z "$DEV" ]; then
+	git clone git@github.com:hurricanerix/hfor.git $HOME/.hfor
+	cd $HOME/.hfor
+fi
+
+# Handoff to python installer
+python install.py $DEV $OS
+
+# This stuff should be done by installer
+# sudo chsh -s `which zsh` $USER
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# cp /vagrant/dotfiles/zshrc $HOME/.zshrc
+

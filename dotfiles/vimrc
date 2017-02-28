@@ -1,0 +1,65 @@
+" Pathogen config
+call pathogen#infect()
+call pathogen#helptags()
+
+" Set Statusline
+set laststatus=2
+set statusline=%f  " Path to the file
+set statusline+=%m "modified flag
+set statusline+=%r "read only flag
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+set statusline+=%= " Switch to the right side
+set statusline+=\ %P "percent through file
+set statusline+=/ " Separator
+set statusline+=%L " Total lines
+set statusline+=( " Separator
+set statusline+=%c " Column
+set statusline+=) " Separator
+
+" ColorScheme config
+set t_Co=256
+syntax on
+"colorscheme solarized
+colorscheme ir_black
+"set background=dark
+
+" Show hidden characters and set colors
+"set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:'
+"set list
+"highlight SpecialKey ctermfg=236 ctermbg=8
+"highlight NonText ctermfg=236 ctermbg=8
+
+" GitGutter config
+let g:gitgutter_sign_column_always = 1
+highlight clear SignColumn
+"let g:gitgutter_max_signs = 500  " default value
+"let g:gitgutter_sign_added = 'xx'
+"let g:gitgutter_sign_modified = 'yy'
+"let g:gitgutter_sign_removed = 'zz'
+"let g:gitgutter_sign_removed_first_line = '^^'
+"let g:gitgutter_sign_modified_removed = 'ww'
+
+" Enable line numbers
+set nu
+
+" Enable Spell check
+"set spell spelllang=en_us
+
+" Enable filetype detection
+filetype plugin on
+
+" Go Config
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd BufRead,BufNewFile *.go set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+autocmd BufRead,BufNewFile *.c set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+let g:go_fmt_command = "goimports"
+
+" Python config
+"if exists('+colorcolumn')
+"  hi ColorColumn guibg=#000000 ctermbg=0
+"  set colorcolumn=80
+"endif
