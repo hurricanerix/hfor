@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-from __future__ import print_function
+#!/usr/bin/env python3
 
 
 def main():
@@ -8,7 +6,7 @@ def main():
     # Install ZSH
     # TODO: sudo chsh -s `which zsh` $USER
     # TODO: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
+    # git commit --amend --author="
     # TODO: link dotfiles
 
 
