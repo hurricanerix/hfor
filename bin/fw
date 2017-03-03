@@ -29,7 +29,7 @@ sudo ip6tables -A INPUT -i eth0 -p tcp --dport $SSH_PORT -j ACCEPT
 # Allow ports
 for var in "$@"
 do
-	sudo iptables -A INPUT -i eth0 -p tcp --dport $var -j ACCEPT
+	sudo ip6tables -A INPUT -i eth0 -p tcp --dport $var -j ACCEPT
 done
 sudo ip6tables -A INPUT -i eth0 -j DROP
 sudo ip6tables -A INPUT -i eth1 -j DROP
