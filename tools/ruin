@@ -21,14 +21,7 @@ fi
 
 if [ -z "$DEV" ]; then
 	git clone git@github.com:hurricanerix/hfor.git $HOME/.hfor
-	cd $HOME/.hfor
 fi
 
-# Handoff to python installer
-python install.py $DEV $OS
-
-# This stuff should be done by installer
-# sudo chsh -s `which zsh` $USER
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# cp /vagrant/dotfiles/zshrc $HOME/.zshrc
-
+cd $HOME/.hfor
+python tools/install.py $DEV $OS

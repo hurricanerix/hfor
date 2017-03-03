@@ -1,0 +1,5 @@
+*.swp
+*.pyc
+vagrant/*
+!vagrant/Vagrantfile
+!vagrant/bootstrap.sh
