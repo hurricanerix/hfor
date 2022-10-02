@@ -1,39 +1,14 @@
-" Pathogen config
+" Version 1.0.0
+" Author: Richard Hawkins
+" URL: https://github.com/hurricanerix/hfor
+
+" -- PATHOGEN --
 call pathogen#infect()
 call pathogen#helptags()
 
-" Set Statusline
-set laststatus=2
-set statusline=%f  " Path to the file
-set statusline+=%m "modified flag
-set statusline+=%r "read only flag
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-set statusline+=%= " Switch to the right side
-set statusline+=\ %P "percent through file
-set statusline+=/ " Separator
-set statusline+=%L " Total lines
-set statusline+=( " Separator
-set statusline+=%c " Column
-set statusline+=) " Separator
-
-" ColorScheme config
-set t_Co=256
-syntax on
-"colorscheme solarized
-colorscheme ir_black
-"set background=dark
-
-" Show hidden characters and set colors
-"set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:'
-"set list
-"highlight SpecialKey ctermfg=236 ctermbg=8
-"highlight NonText ctermfg=236 ctermbg=8
-
-" GitGutter config
+" -- PLUGINS START --
+"
+" GitGutter
 let g:gitgutter_sign_column_always = 1
 highlight clear SignColumn
 "let g:gitgutter_max_signs = 500  " default value
@@ -43,13 +18,48 @@ highlight clear SignColumn
 "let g:gitgutter_sign_removed_first_line = '^^'
 "let g:gitgutter_sign_modified_removed = 'ww'
 
-" Enable line numbers
+" -- PLUGINS END --
+
+" -- COLOR SCHEME --
+set term=builtin_ansi
+set t_Co=8
+syntax on
+set background=dark
+colorscheme blue
+highlight SignColumn	ctermfg=Blue	ctermbg=DarkBlue
+highlight SpecialKey	ctermfg=Blue	ctermbg=DarkBlue
+highlight NonText	ctermfg=Blue	ctermbg=DarkBlue
+
+" Show hidden characters
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:'
+set list
 set nu
 
-" Enable Spell check
-"set spell spelllang=en_us
+" -- STATUS LINE --
+" Left side
+set laststatus=2
+set statusline=%f  " Path to the file
+set statusline+=%m "modified flag
+set statusline+=%r "read only flag
 
-" Enable filetype detection
+" Right side
+set statusline+=%= " Switch to the right side
+set statusline+=\ %P "percent through file
+set statusline+=/ " Separator
+set statusline+=%L " Total lines
+set statusline+=( " Separator
+set statusline+=%c " Column
+set statusline+=) " Separator
+
+" Run on save
+autocmd BufWritePost * GitGutter
+
+" Enable Spell check
+set spell spelllang=en_us
+highlight	clear SpellBad
+highlight	SpellBad cterm=underline ctermfg=Red
+
+" Enable file type detection
 filetype plugin on
 
 " Go Config
@@ -63,3 +73,4 @@ let g:go_fmt_command = "goimports"
 "  hi ColorColumn guibg=#000000 ctermbg=0
 "  set colorcolumn=80
 "endif
+

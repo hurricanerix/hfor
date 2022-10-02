@@ -1,9 +1,17 @@
 # Home Folder of Ruin
 
-My home folder.  Feel free to steal from it, but use at your own peril.
+## Korn Shell Setup
 
-## Installation
-
+```ksh
+$ cp ./dotfiles/kshrc $HOME/.kshrc
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/hurricanerix/hfor/master/tools/ruin)"
+
+## Vim Setup
+
+```ksh
+$ mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
+$ curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+$ git clone https://github.com/airblade/vim-gitgutter.git $HOME/.vim/bundle
+$ git clone https://github.com/fatih/vim-go.git $HOME/.vim/bundle
+$ cp ./dotfiles/vimrc $HOME/.vimrc
 ```
