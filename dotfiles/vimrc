@@ -1,10 +1,13 @@
-" Version 1.0.0
-" Author: Richard Hawkins
-" URL: https://github.com/hurricanerix/hfor
-
 " -- PATHOGEN --
 call pathogen#infect()
 call pathogen#helptags()
+
+" -- COLOR SCHEME --
+"
+set term=builtin_ansi
+set t_Co=256
+syntax on
+colorscheme halloween_dark
 
 " -- PLUGINS START --
 "
@@ -19,16 +22,6 @@ highlight clear SignColumn
 "let g:gitgutter_sign_modified_removed = 'ww'
 
 " -- PLUGINS END --
-
-" -- COLOR SCHEME --
-set term=builtin_ansi
-set t_Co=8
-syntax on
-set background=dark
-colorscheme blue
-highlight SignColumn	ctermfg=Blue	ctermbg=DarkBlue
-highlight SpecialKey	ctermfg=Blue	ctermbg=DarkBlue
-highlight NonText	ctermfg=Blue	ctermbg=DarkBlue
 
 " Show hidden characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:'
@@ -56,21 +49,14 @@ autocmd BufWritePost * GitGutter
 
 " Enable Spell check
 set spell spelllang=en_us
-highlight	clear SpellBad
-highlight	SpellBad cterm=underline ctermfg=Red
 
 " Enable file type detection
 filetype plugin on
 
-" Go Config
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" Language Config
 autocmd BufRead,BufNewFile *.go set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-autocmd BufRead,BufNewFile *.c set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 let g:go_fmt_command = "goimports"
+autocmd BufRead,BufNewFile *.md set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+autocmd BufRead,BufNewFile *.c set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 
-" Python config
-"if exists('+colorcolumn')
-"  hi ColorColumn guibg=#000000 ctermbg=0
-"  set colorcolumn=80
-"endif
 
